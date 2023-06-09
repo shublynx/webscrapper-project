@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+ <div class="container">
+        <div class="row">
+            <div class="col-md-12 m-5">
+                <h1>Collect links of any website you want!</h1>
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col-md-4">
+                <form method="POST" action="/">
+                    {% csrf_token %}
+                    <input class="form-control" name="site" type="text" id="site" placeholder="enter site address">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" type="submit">Scrape</button>
+                </div>
+                </form>
+                <div class="col-md-6">
+                    <a class="btn btn-warning" href="/delete">Delete</a>
+                </div>
+
+        </div>
+
+
+           <div class="row m-5">
+               <div class="col-md-8">
+                    <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Link</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                            {% for link in data %}
+                              <tr>
+
+                                <td>{{ link.id }}</td>
+                                <td>{{ link.name }}</td>
+                                <td>{{ link.address }}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+
+               </div>
+           </div>
+       </div>
+</body>
+</html>
